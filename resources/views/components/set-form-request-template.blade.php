@@ -1,0 +1,1 @@
+<textarea hidden style='display:none' id='gsf_item'>{{ $item }}</textarea>

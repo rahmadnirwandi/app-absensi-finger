@@ -1,0 +1,264 @@
+@page {
+    margin: 0;
+    line-height: 14px;
+}
+
+
+.page-break {
+    page-break-after: always;
+}
+
+.page-break-inside-avoid {
+    page-break-inside: avoid;
+}
+
+* {
+    font-family: open-sans;
+}
+
+table {
+    page-break-inside: auto
+}
+
+
+#soap .section-body table,
+#soap .section-body tr,
+#soap .section-body td {
+    border: 1px solid;
+    padding: 5px;
+    /* width:100%; */
+}
+
+.table-border th,
+.table-border tr,
+.table-border td {
+    border: 1px solid;
+}
+
+table {
+    width: 100%;
+}
+
+table#table_soap>tr>td:nth-child(1) {
+    width: 20%;
+}
+
+table#table_soap>tr>td:nth-child(2) {
+    width: 1%;
+}
+
+section {
+    padding: 10px 100px 30px 100px;
+}
+
+section:nth-of-type(even) {
+    background-color: #eee;
+}
+
+.section-header {
+    margin-bottom: 15px;
+    text-align: center;
+    /* border-bottom: 0.5px solid rgb(187, 186, 186); */
+}
+
+.section-header * {
+    margin: 5px;
+}
+
+.section-header *:first-child {
+    text-transform: uppercase;
+}
+
+.section-body {
+    margin-bottom: 30px;
+}
+
+
+.table-column-colon span {
+    display: inline-block;
+    width: 150px;
+}
+
+#eligibilitas span {
+    display: inline-block;
+    width: 200px;
+}
+
+.fw-lighter {
+    font-weight: lighter;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-end {
+    text-align: right;
+}
+
+/* .justify-content-end {
+    justify-content: flex-end;
+} */
+
+
+.fw-bold {
+    font-weight: 700;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+
+i span {
+    display: block;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.bottom_eligibilitas .agreement * {
+    font-size: 12px;
+    font-style: italic;
+    line-height: 15px;
+    margin: 0;
+}
+
+.border {
+    border: 1px solid;
+}
+
+.border-3 {
+    border: 3px solid gray;
+}
+
+.border-limit {
+    border-bottom: 2px solid gray;
+    margin: 40px 0;
+}
+
+.qrCode {
+    margin: 20px 0;
+}
+
+.px-150px {
+    padding: 0 150px;
+}
+
+
+
+.mb {
+    margin-bottom: 15px;
+}
+
+.my {
+    margin: 30px 0;
+}
+
+.p-default {
+    padding: 20px;
+}
+
+
+
+/* Clear floats after the columns */
+.pdf-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.pdf-row {
+    width: 50%;
+}
+
+.pdf-row div {
+    float: left;
+}
+
+.pdf-row div:nth-child(1) {
+    width: 34%;
+}
+
+.pdf-row div:nth-child(2) {
+    width: 1%;
+}
+
+.pdf-row div:nth-child(3) {
+    width: 65%;
+}
+
+.border-bottom {
+    border-bottom: 1px solid rgb(187, 186, 186);
+}
+
+
+
+.table_equal_column_half tr td {
+    text-align: center;
+    width: 50%;
+}
+
+.height-empty-row-table {
+    height: 30px;
+}
+
+pre {
+    white-space: pre-wrap;
+    /* Since CSS 2.1 */
+    /* white-space: -moz-pre-wrap; */
+    /* Mozilla, since 1999 */
+    /* white-space: -pre-wrap; */
+    /* Opera 4-6 */
+    /* white-space: -o-pre-wrap; */
+    /* Opera 7 */
+    /* word-wrap: break-word; */
+    /* Internet Explorer 5.5+ */
+}
+
+.kop-surat {
+    border-bottom: 0.5px solid rgb(187, 186, 186);
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.kop-surat * {
+    padding: 0px;
+    margin: 0px;
+}
+
+.font-xl {
+    font-size: 35px;
+}
+
+.font-lg {
+    font-size: 26px;
+}
+
+.font-md {
+    font-size: 20px;
+}
+
+.font-sm {
+    font-size: 10px;
+}
+
+.font-xs {
+    font-size: 5px;
+}
+
+
+
+.berkas_unduh_opsi_container:nth-child(even) {
+    background-color: #eee;
+}

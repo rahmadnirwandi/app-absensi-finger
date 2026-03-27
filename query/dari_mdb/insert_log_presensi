@@ -1,0 +1,31 @@
+insert ignore into ref_data_absensi_tmp(
+
+id_mesin_absensi,
+id_user,
+waktu,
+verified,
+status
+)
+
+select 
+	*
+from(
+select 
+IF(id_mesin_absensi, id_mesin_absensi, 0) id_mesin_absensi
+,user_info.Badgenumber
+,presensi.CHECKTIME
+,presensi.VERIFYCODE,
+0 status
+
+-- ,presensi.USERID
+-- ,user_info.Name
+-- ,ref_mesin_absensi.sn
+-- ,ref_mesin_absensi.ip_address
+-- ,presensi.sn presensi_sn
+from sik_atam_absensi_mdb.CHECKINOUT presensi
+left join sik_atam_absensi_mdb.USERINFO user_info on user_info.USERID=presensi.USERID
+left join ref_mesin_absensi on ref_mesin_absensi.sn=presensi.sn
+)utama 
+order by UNIX_TIMESTAMP( CHECKTIME ) desc
+
+;

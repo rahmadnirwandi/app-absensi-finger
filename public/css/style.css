@@ -1,0 +1,573 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+
+body {
+    font-family: "Poppins", sans-serif !important;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+hr.line {
+    border: 1px solid #ffffff;
+    opacity: 100;
+}
+
+/* Select 2 */
+/* .select2-selection__choice {
+    display: none !important;
+} */
+/* ==== */
+
+.was-validated .custom-select:valid {
+    background-image: none;
+}
+
+.was-validated .custom-select:invalid {
+    background-image: none;
+}
+
+.was-validated .form-control:valid {
+    background-image: none;
+}
+
+.was-validated .form-control:invalid {
+    background-image: none;
+}
+
+select.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    appearance: auto;
+}
+
+.table> :not(caption)>*>* {
+    border-bottom-width: 0px;
+}
+
+/* Setup warna default */
+.bg-blue-light {
+    background-color: #166fca !important;
+}
+
+.bg-blue-dark1 {
+    background-color: #094889 !important;
+}
+
+.bg-dark {
+    background-color: #0d0d34 !important;
+}
+
+.bg-info {
+    background-color: #cee5ff !important;
+}
+
+.bg-primary {
+    background-color: #3b95ff !important;
+}
+
+.btn-primary {
+    background-color: #3b95ff !important;
+    border: none !important;
+}
+
+.btn-default {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #cccccc;
+}
+
+.btn-shadow {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.btn-warning {
+    background-color: #f2994a;
+    color: #ffffff;
+}
+
+.btn-warning:hover {
+    background-color: #e48e42;
+    color: #ffffff;
+}
+
+.text-primary {
+    color: #3b95ff;
+}
+
+.text-danger {
+    color: #ff0000;
+}
+
+.text-warning {
+    color: #e48e42;
+}
+
+.text-green {
+    color: #26ab5f;
+}
+
+.text-purple {
+    color: #800080;
+}
+
+/* ------------------- */
+
+/* Breadcrumbs */
+.breadcrumbs {
+    text-align: start;
+}
+
+.breadcrumbs ul {
+    list-style: none;
+    display: inline-block;
+    padding-left: 0;
+}
+
+.breadcrumbs ul li {
+    display: inline;
+}
+
+.breadcrumbs ul li a {
+    display: block;
+    float: left;
+    background-color: #cee5ff;
+    text-align: end;
+    padding: 13px 15px 13px 10px;
+    position: relative;
+    margin: 0 10px 0 0;
+    font-size: 16px;
+    text-decoration: none;
+    color: #3b95ff;
+    min-width: 150px;
+}
+
+.breadcrumbs ul li a:after {
+    content: "";
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 20px solid #cee5ff;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    z-index: 1;
+}
+
+.breadcrumbs ul li a:before {
+    content: "";
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 20px solid #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.breadcrumbs ul li:first-child a {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.breadcrumbs ul li:first-child a::before {
+    display: none;
+}
+
+.breadcrumbs-active {
+    background-color: #3b95ff !important;
+    color: white !important;
+}
+
+.breadcrumbs-active:after {
+    content: "";
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 20px solid #3b95ff !important;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    z-index: 1;
+}
+
+.breadcrumbs-active:before {
+    content: "";
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 20px solid #ffffff;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* ------------------- */
+
+/* Pointer saat hover */
+.hover-pointer {
+    cursor: pointer;
+}
+
+/* ------------------- */
+
+/* Icon Background di Input */
+.input-show-modal {
+    background-image: url("../icon/select.png");
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 97%;
+}
+
+.input-dropdown {
+    background-image: url("../icon/dropdown.png");
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 97%;
+}
+
+.input-daterange {
+    /* background-image: url("{{ asset('icon/date.png') }}"); */
+    background-image: url("../icon/date.png");
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 97%;
+}
+
+input.readonly {
+    background-color: #e9ecef;
+}
+
+input.readonly:focus {
+    border-color: unset;
+    border: 1px solid #ced4da;
+    box-shadow: unset;
+}
+
+select.form-select:disabled {
+    background-color: unset !important;
+    border-color: unset;
+    border: 1px solid #ced4da;
+    box-shadow: unset;
+}
+
+textarea.readonly {
+    background-color: #ffffff !important;
+}
+
+textarea.readonly:focus {
+    border-color: unset;
+    border: 1px solid #ced4da;
+    box-shadow: unset;
+}
+
+/* ------------------- */
+
+.sm-show {
+    display: none;
+}
+
+.md-show {
+    display: inline-block;
+}
+
+.wrapper {
+    display: flex;
+}
+
+/* Halaman konten */
+div.content-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ------------------- */
+
+/* ------------------- */
+.button-tabs {
+    /* width: 240px; */
+    background-color: #f5f5f5;
+}
+
+.button-icon-inside {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.button-icon-inside input {
+    width: 90%;
+}
+
+.button-icon-inside-col-2 {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.button-icon-inside-col-2 input {
+    width: 85%;
+}
+
+.label-input {
+    display: block;
+}
+
+.input-text {
+    border: none;
+    padding: 0px 10px;
+}
+
+.input-text:focus {
+    outline: none;
+}
+
+.textarea-button-inside {
+    position: relative;
+}
+
+.textarea-button-inside span.textarea-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.textarea-button-inside textarea {
+    box-sizing: border-box;
+}
+
+/* Ukuran Layar Tablet */
+@media (max-width: 768px) {
+    .sidebar {
+        width: auto !important;
+    }
+
+    /* #menu1,
+    #menu2,
+    #menu3,
+    #menu4,
+    #menu5,
+    #menu6 {
+        display: none;
+    } */
+
+    .minimize {
+        display: none;
+    }
+
+    .md-show {
+        display: none;
+    }
+
+    .md-section-show {
+        display: inline-block;
+    }
+
+    .sm-show {
+        display: inline-block;
+    }
+
+    .button-tabs {
+        width: 170px;
+    }
+}
+
+.pencarian {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.input-text {
+    border: none;
+}
+
+.input-text:focus {
+    outline: none;
+}
+
+.btn-icon {
+    padding: 0 !important;
+    border: none;
+    background-color: unset;
+}
+
+/* .sticky-thead tbody {
+    position: sticky;
+    top: 0 !important;
+    background-color: #ffffff !important;
+} */
+
+.form-label {
+    display: block;
+}
+
+.form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.ranap-radio {
+    width: 1em;
+    height: 1em;
+}
+
+tbody tr:nth-child(1) {
+    /* border-top: hidden; */
+}
+
+.table-bordered-bottom > tbody tr{
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table-no-bordered > tbody tr{
+    border: 0px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    /* width: 15px;
+    padding: 0px;
+    margin: 0px; */
+    background: none;
+    /* display: none; */
+}
+
+@media (max-width: 1445px) {
+    table.table-responsive-tablet {
+        width: 1400px !important;
+        overflow: scroll !important;
+    }
+}
+
+/* ------------------- */
+.input-test {
+    position: absolute;
+    margin-left: 22.5px;
+    margin-top: 22px;
+    transform: scale(2.1);
+    opacity: 0;
+    cursor: pointer;
+}
+
+.navbar {
+    max-width: 100%;
+    min-height: 50px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    /* background: blue; */
+    margin-left: 0px;
+}
+
+.navbar .left .hamburger {
+    padding: 10px;
+    /* position: fixed; */
+}
+
+.navbar .left .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: black;
+    margin: 6px;
+}
+
+.alternate_child_color>*:nth-of-type(even) {
+    background-color: #eee;
+}
+
+.auto-number-table {
+    counter-reset: rowNumber;
+}
+
+.auto-number-table tbody tr {
+    counter-increment: rowNumber;
+}
+
+.auto-number-table tbody tr td:first-child::before {
+    content: counter(rowNumber) ". ";
+
+}
+
+/* daterangepicker year and mount------------------- */
+
+.monthly select.monthselect, 
+.monthly select.yearselect,
+.yearly select.monthselect, 
+.yearly select.yearselect {
+    font-size: 16px !important;
+}
+
+
+.yearly table.table-condensed .monthselect,
+.yearly table.table-condensed thead tr:nth-child(2),
+.yearly table.table-condensed tbody,
+.monthly table.table-condensed thead tr:nth-child(2),
+.monthly table.table-condensed tbody {
+  display: none;
+}
+
+.daterangepicker.monthly .drp-calendar,
+.daterangepicker.yearly .drp-calendar {
+  width: 1000px !important;
+}
+
+.yearly table.table-condensed .yearselect {
+  width: 100%;
+}
+/* ------------------- */
+
+/* loading------------------- */
+div#loading_black_screen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 16, 16, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+div#loading_black_screen > #icon_loading {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin_2 2s linear infinite;
+}
+
+@keyframes spin_2 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ------------------- */
+
+@media (max-width: 575.98px) {
+    .button-tabs {
+        width: 100px;
+        font-size: 0.75em;
+        background-color: #f5f5f5;
+    }
+}

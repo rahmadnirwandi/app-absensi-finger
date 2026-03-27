@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} ^/
+    RewriteRule ^bootstrap/(.*)$ public/bootstrap/$1 [L]
+    RewriteRule ^css/(.*)$ public/css/$1 [L]
+    RewriteRule ^fonts/(.*)$ public/fonts/$1 [L]
+    RewriteRule ^icon/(.*)$ public/icon/$1 [L]
+    RewriteRule ^images/(.*)$ public/images/$1 [L]
+    RewriteRule ^js/(.*)$ public/js/$1 [L]
+    RewriteRule ^libs/(.*)$ public/libs/$1 [L]
+    RewriteRule ^webapps/(.*)$ public/webapps/$1 [L]
+
+    RewriteRule ^.*$ server.php
+</IfModule>

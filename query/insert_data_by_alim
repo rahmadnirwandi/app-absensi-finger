@@ -1,0 +1,275 @@
+ALTER TABLE ref_departemen AUTO_INCREMENT = 1;
+insert ignore into ref_departemen(
+    nm_departemen
+)
+select bidang from (
+    select * from (
+    select
+    bidang,
+    lcase(replace(trim(bidang),' ','') ) departemen_uniq
+    from karyawan_tmp
+    )utama
+    group by departemen_uniq
+)utama
+left join ref_departemen rd on lcase(replace(trim(rd.nm_departemen),' ','') )=departemen_uniq
+where id_departemen is null
+;
+
+
+ALTER TABLE ref_ruangan AUTO_INCREMENT = 1;
+
+insert ignore into ref_ruangan(
+    id_departemen,
+    nm_ruangan
+)
+
+select
+utama.id_departemen,
+ruang
+ from (
+select
+id_departemen,
+ruang,
+ruang_uniq
+from (
+    select * from (
+    select
+    bidang,
+    lcase(replace(trim(bidang),' ','') ) departemen_uniq,
+    ruang,
+    lcase(replace(trim(ruang),' ','') ) ruang_uniq
+    from karyawan_tmp
+    )utama
+    group by ruang_uniq
+)utama
+left join ref_departemen rd on lcase(replace(trim(rd.nm_departemen),' ','') )=departemen_uniq
+where id_departemen is not null
+)utama
+left join ref_ruangan ru on lcase(replace(trim(ru.nm_ruangan),' ','') )=ruang_uniq
+where id_ruangan is null
+;
+
+
+
+-- check data karyawan DUPLICATE
+
+select
+id_user,nm_karyawan,COUNT(id_user)
+
+from (
+select
+id_user,
+rk.id_karyawan,
+utama.nm_karyawan,
+utama.id_departemen,
+utama.nm_departemen,
+utama.id_ruangan,
+utama.nm_ruangan,
+utama.id_jadwal
+from (
+select
+utama.*,
+id_karyawan,
+rku.id_user id_user_rku
+from(
+    select
+    id_user,nm_karyawan,rd.id_departemen,nm_departemen,ru.id_ruangan,nm_ruangan,id_jadwal,jadwal
+    from (
+        select * from (
+        select
+        id_user,
+        nm_karyawan,
+        bidang,
+        lcase(replace(trim(bidang),' ','') ) departemen_uniq,
+        ruang,
+        lcase(replace(trim(ruang),' ','') ) ruang_uniq,
+        jadwal,
+        lcase(replace(trim(jadwal),' ','') ) jadwal_uniq,
+        if(lcase(replace(trim(jadwal),' ','') )='rutin',1,2) id_jadwal
+        from karyawan_tmp
+        )utama
+    )utama
+    inner join ref_departemen rd on lcase(replace(trim(rd.nm_departemen),' ','') )=departemen_uniq
+    INNER join ref_ruangan ru on lcase(replace(trim(ru.nm_ruangan),' ','') )=ruang_uniq
+)utama
+left join ref_karyawan_user rku on rku.id_user=utama.id_user
+where rku.id_user is not null
+)utama
+left join ref_karyawan rk on rk.id_karyawan=utama.id_karyawan
+where rk.id_karyawan is not null
+order by
+id_user,
+rk.id_karyawan,
+utama.nm_karyawan
+)utama
+GROUP BY id_user
+HAVING COUNT(id_user) > 1
+order by id_user
+;
+
+
+update ref_karyawan target
+inner join (
+select
+*
+from (
+select
+id_user,
+rk.id_karyawan,
+utama.nm_karyawan,
+utama.id_departemen,
+utama.nm_departemen,
+utama.id_ruangan,
+utama.nm_ruangan,
+utama.id_jadwal
+from (
+select
+utama.*,
+id_karyawan,
+rku.id_user id_user_rku
+from(
+    select
+    id_user,nm_karyawan,rd.id_departemen,nm_departemen,ru.id_ruangan,nm_ruangan,id_jadwal,jadwal
+    from (
+        select * from (
+        select
+        id_user,
+        nm_karyawan,
+        bidang,
+        lcase(replace(trim(bidang),' ','') ) departemen_uniq,
+        ruang,
+        lcase(replace(trim(ruang),' ','') ) ruang_uniq,
+        jadwal,
+        lcase(replace(trim(jadwal),' ','') ) jadwal_uniq,
+        if(lcase(replace(trim(jadwal),' ','') )='rutin',1,2) id_jadwal
+        from karyawan_tmp
+        )utama
+    )utama
+    inner join ref_departemen rd on lcase(replace(trim(rd.nm_departemen),' ','') )=departemen_uniq
+    INNER join ref_ruangan ru on lcase(replace(trim(ru.nm_ruangan),' ','') )=ruang_uniq
+)utama
+left join ref_karyawan_user rku on rku.id_user=utama.id_user
+where rku.id_user is not null
+)utama
+inner join ref_karyawan rk on rk.id_karyawan=utama.id_karyawan
+where rk.id_karyawan is not null
+order by
+id_user,
+rk.id_karyawan,
+utama.nm_karyawan
+)utama
+)utama on utama.id_karyawan=target.id_karyawan
+set
+target.id_departemen=utama.id_departemen,
+target.id_ruangan=utama.id_ruangan
+;
+
+
+ALTER TABLE ref_karyawan_jadwal AUTO_INCREMENT = 1;
+insert ignore into ref_karyawan_jadwal(
+    id_karyawan,
+	id_jenis_jadwal
+)
+select 
+id_karyawan,id_jadwal
+from (
+select 
+id_user,
+rk.id_karyawan,
+utama.nm_karyawan,
+utama.id_departemen,
+utama.nm_departemen,
+utama.id_ruangan,
+utama.nm_ruangan,
+utama.id_jadwal
+from (
+select 
+utama.*,
+id_karyawan,
+rku.id_user id_user_rku
+from(
+	select 
+	id_user,nm_karyawan,rd.id_departemen,nm_departemen,ru.id_ruangan,nm_ruangan,id_jadwal,jadwal
+	from (
+		select * from (
+		select
+		id_user,
+		nm_karyawan,
+		bidang,
+		lcase(replace(trim(bidang),' ','') ) departemen_uniq,
+		ruang,
+		lcase(replace(trim(ruang),' ','') ) ruang_uniq,
+		jadwal,
+		lcase(replace(trim(jadwal),' ','') ) jadwal_uniq,
+		if(lcase(replace(trim(jadwal),' ','') )='rutin',1,2) id_jadwal
+		from karyawan_tmp
+		)utama
+	)utama
+	inner join ref_departemen rd on lcase(replace(trim(rd.nm_departemen),' ','') )=departemen_uniq
+	INNER join ref_ruangan ru on lcase(replace(trim(ru.nm_ruangan),' ','') )=ruang_uniq
+)utama
+left join ref_karyawan_user rku on rku.id_user=utama.id_user
+where rku.id_user is not null
+)utama
+inner join ref_karyawan rk on rk.id_karyawan=utama.id_karyawan
+where rk.id_karyawan is not null
+order by 
+id_user,
+rk.id_karyawan,
+utama.nm_karyawan
+)utama
+where id_jadwal=1
+
+update ref_karyawan_jadwal target 
+inner join (
+select 
+id_karyawan,id_jadwal
+from (
+select 
+id_user,
+rk.id_karyawan,
+utama.nm_karyawan,
+utama.id_departemen,
+utama.nm_departemen,
+utama.id_ruangan,
+utama.nm_ruangan,
+utama.id_jadwal
+from (
+select 
+utama.*,
+id_karyawan,
+rku.id_user id_user_rku
+from(
+	select 
+	id_user,nm_karyawan,rd.id_departemen,nm_departemen,ru.id_ruangan,nm_ruangan,id_jadwal,jadwal
+	from (
+		select * from (
+		select
+		id_user,
+		nm_karyawan,
+		bidang,
+		lcase(replace(trim(bidang),' ','') ) departemen_uniq,
+		ruang,
+		lcase(replace(trim(ruang),' ','') ) ruang_uniq,
+		jadwal,
+		lcase(replace(trim(jadwal),' ','') ) jadwal_uniq,
+		if(lcase(replace(trim(jadwal),' ','') )='rutin',1,2) id_jadwal
+		from karyawan_tmp
+		)utama
+	)utama
+	inner join ref_departemen rd on lcase(replace(trim(rd.nm_departemen),' ','') )=departemen_uniq
+	INNER join ref_ruangan ru on lcase(replace(trim(ru.nm_ruangan),' ','') )=ruang_uniq
+)utama
+left join ref_karyawan_user rku on rku.id_user=utama.id_user
+where rku.id_user is not null
+)utama
+inner join ref_karyawan rk on rk.id_karyawan=utama.id_karyawan
+where rk.id_karyawan is not null
+order by 
+id_user,
+rk.id_karyawan,
+utama.nm_karyawan
+)utama
+where id_jadwal=1
+)utama on utama.id_karyawan=target.id_karyawan
+set target.id_jenis_jadwal=utama.id_jadwal

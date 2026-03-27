@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #3f8fd2 0%, #5aa7e3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 30px;
+}
+
+/* Logo Compact */
+.logo-compact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.logo-compact .logo-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.logo-compact .divider {
+    width: 1px;
+    height: 35px;
+    background: #e2e8f0;
+}
+
+.logo-compact .text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-compact .app-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    line-height: 1.2;
+}
+
+.logo-compact .rs-name {
+    font-size: 11px;
+    color: #6c757d;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 6px;
+}
+
+.input-field {
+    position: relative;
+}
+
+.input-field i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 16px;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 11px 12px 11px 40px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #f8fafc;
+}
+
+.input-field input:focus {
+    outline: none;
+    border-color: #3f8fd2;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(63,143,210,0.1);
+}
+
+.input-field input::placeholder {
+    color: #a0aec0;
+}
+
+.toggle-pass {
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
+}
+
+.toggle-pass:hover {
+    color: #3f8fd2;
+}
+
+/* Button */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #3f8fd2 0%, #5aa7e3 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s, box-shadow 0.2s;
+    margin-top: 8px;
+}
+
+.btn-login:hover {
+    opacity: 0.95;
+    box-shadow: 0 4px 12px rgba(63,143,210,0.35);
+}
+
+/* Alert */
+.alert-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.footer p {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+    body {
+        padding: 15px;
+    }
+    
+    .login-card {
+        padding: 30px 20px;
+    }
+
+    .logo-compact .logo-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-compact .app-name {
+        font-size: 16px;
+    }
+
+    .logo-compact .rs-name {
+        font-size: 10px;
+    }
+}
+
+@media (max-height: 600px) {
+    body {
+        align-items: flex-start;
+        padding-top: 30px;
+    }
+}

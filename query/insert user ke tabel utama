@@ -1,0 +1,41 @@
+select count(*) from ref_user_info;
+select count(*) from sik_atam_absensi_log.ref_user_info_tmp;
+
+select count(*) from ref_user_info_detail;
+select count(*) from sik_atam_absensi_log.ref_user_info_detail_tmp;
+
+
+insert ignore into ref_user_info(
+
+id_user,
+name,
+password,
+`group`,
+privilege,
+card,
+pin2,
+tz1,
+tz2,
+tz3
+
+)
+select 
+id_user,
+name,
+password,
+`group`,
+privilege,
+card,
+pin2,
+tz1,
+tz2,
+tz3
+from sik_atam_absensi_log.ref_user_info_tmp
+order by id_user
+
+
+
+insert ignore into ref_user_info_detail(
+id_user,finger_id,size,valid,finger
+)
+select utama.id_user,finger_id,size,valid,finger from sik_atam_absensi_log.ref_user_info_detail_tmp utama

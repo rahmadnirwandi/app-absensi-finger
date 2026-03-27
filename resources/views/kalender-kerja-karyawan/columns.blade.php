@@ -1,0 +1,273 @@
+<style>
+    .hari_default{
+        background-color: transparent !important;
+    }
+
+    .hari_red{
+        background-color: #f39791 !important;
+    }
+
+    .hari_yellow{
+        background-color: #f7d44e !important;
+    }
+
+    .hari_blue_sky{
+        background-color: #79f6eb !important;
+    }
+
+    .hari_green_sky{
+        background-color: #9cec6d !important;
+    }
+
+    .hasil_positif{
+        color: #358f00 !important;
+        font-weight: 700;
+    }
+
+    .hasil_negatif{
+        color: #8f1300 !important;
+        font-weight: 700;
+    }
+
+    .penanda_jadwal{
+        margin-top:5px;
+        height: 20px;
+    }
+    .jadwal-cell {
+    min-width: 120px;
+    height: 80px;
+    vertical-align: middle;
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+.jadwal-cell:hover {
+    background: #f8f9fa;
+}
+
+.jadwal-display {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+</style>
+
+<?php
+    $hari_kerja=[];
+    $data_tgl=[];
+    $data_hari_e=[];
+    $data_hari_indo=[];
+    $header_tgl='';
+    $header_hari='';
+
+    if(!empty($hari_kerja_tmp)){
+        $hari_kerja_t=explode(',',$hari_kerja_tmp);
+        if($hari_kerja_t){
+            foreach($hari_kerja_t as $hk){
+                $hari_kerja[$hk]=$hk;
+            }
+        }
+    }
+
+    $jml_hari_kerja=count($hari_kerja);
+
+
+    foreach($list_tgl as $key_tgl => $item_tgl){
+        $tgl_format_tmp = new \DateTime($item_tgl);
+        $tgl_format=$tgl_format_tmp->format('d/m');
+        $hari_format=$tgl_format_tmp->format('D');
+
+        $hari_format_indo=(new \App\Http\Traits\GlobalFunction)->hari($hari_format);
+        $data_tgl[$key_tgl]=$tgl_format;
+        $data_hari_e[$key_tgl]=$hari_format;
+        $data_hari_indo[$key_tgl]=(new \App\Http\Traits\GlobalFunction)->hari($hari_format,1);
+
+        $nm_hari=!empty($data_hari_indo[$key_tgl]) ? $data_hari_indo[$key_tgl] : '';
+
+        $header_tgl.='<th class="py-3" style="width: 1%">'.$tgl_format.'</th>';
+        $header_hari.='<th class="py-3" style="width: 1%">'.$nm_hari.'</th>';
+    }
+?>
+
+<hr style="margin-top:0px">
+<div>
+    <div class="row d-flex justify-content-between">
+        <div>
+            <form action="" method="GET">
+                <input type='hidden' name='type_link' value='2'>
+                <div class="row justify-content-start align-items-end mb-3">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="row justify-content-start align-items-end mb-3">
+
+                            <div class="col-lg-3">
+                                <div class='bagan_form'>
+                                    <div class='input-month-year-bagan'>
+                                        <label for="filter_tahun_bulan" class="form-label">Tahun & Bulan</label>
+                                        <span class='icon-bagan-date'></span>
+                                        <input type="text" class="form-control input-month" id="filter_tahun_bulan" name='filter_tahun_bulan' placeholder="tahun & bulan" value="{{ !empty(Request::get('filter_tahun_bulan')) ? Request::get('filter_tahun_bulan') : date('Y-m') }}">
+                                    </div>
+                                    <div class="message"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <div class='bagan_form'>
+                                    <label for="filter_search_text" class="form-label">Pencarian Dengan Keyword</label>
+                                    <input type="text" class="form-control" name='form_filter_text' value="{{ Request::get('form_filter_text') }}" id='filter_search_text' placeholder="Masukkan Kata">
+                                <div class="message"></div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-1 col-md-1">
+                            <div class="d-grid grap-2">
+                                <button type="submit" class="btn btn-primary validasi_submit" name='cari_data' value=1>
+                                    <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <hr>
+        
+        @if( (new \App\Http\Traits\AuthFunction)->checkAkses($router_name->uri.'/cetak') )
+            @if(!empty($list_data->total()))
+                <?php
+                    $params_filter=Request::all();
+                    $parameter_sent=[
+                        'data_sent'=>json_encode($params_filter)
+                    ];
+                    $url_cetak=(new \App\Http\Traits\GlobalFunction)->set_paramter_url($router_name->uri.'/cetak',$parameter_sent);
+                ?>
+                <div class="row">
+                    <div class="col-md-12 text-end">
+                        <a href="{{ url($url_cetak) }}" class="btn" style='color:#fff;background-color:#7912e0;'><i class="fa-solid fa-file-excel"></i> Print</a>
+                    </div>
+                </div>
+            @endif
+        @endif
+        <div style="overflow-x: auto; max-width: auto;">
+            <table class="table table-bordered table-responsive-tablet">
+                <thead>
+                    <tr>
+                        <th rowspan="2" class="py-3" style="width: 1%; vertical-align: middle;">No</th>
+                        <th rowspan="2" class="py-3" style="width: 40%; vertical-align: middle;">Nama</th>
+                        {!! $header_tgl !!}
+                        {{-- <th rowspan="2" class="py-3" style="width: 30%; vertical-align: middle;">Total Kerja</th>
+                        <th rowspan="2" class="py-3" style="width: 30%; vertical-align: middle;">Selisih</th> --}}
+                    </tr>
+                    <tr>
+                        {!! $header_hari !!}
+                    </tr>
+                </thead>
+               
+                <tbody>
+                    @if(!empty($list_data))
+                        <?php
+                            $list_departemen=[];
+                            $list_ruangan=[];
+                            $list_status_karyawan=[];
+                        ?>
+                        @foreach($list_data as $key => $item)
+                            <?php 
+                                $data_presensi=!empty($item->presensi) ? (array)json_decode($item->presensi) : [];
+                                $get_tamplate_user=!empty($list_tamplate_user[$item->id_karyawan]) ? $list_tamplate_user[$item->id_karyawan] : '';
+                            ?>
+                            @if(empty($list_departemen[$item->id_departemen]))
+                                <?php $list_departemen[$item->id_departemen]=1; ?>
+                                <tr style='background: #a7a7a7;'>
+                                    <td colspan="50" style='vertical-align: middle;'>{{ !empty($item->nm_departemen) ? $item->nm_departemen : '' }}</td>
+                                </tr>
+                            @endif
+
+                            @if(empty($list_ruangan[$item->id_ruangan]))
+                                <?php $list_ruangan[$item->id_ruangan]=1; ?>
+                                <tr style='background: #c8c7c7;'>
+                                    <td>-</td>
+                                    <td colspan="50" style='vertical-align: middle;'>{{ !empty($item->nm_ruangan) ? $item->nm_ruangan : '' }}</td>
+                                </tr>
+                            @endif
+
+                            @if(empty($list_status_karyawan[$item->id_ruangan][$item->id_status_karyawan]))
+                                <?php $list_status_karyawan[$item->id_ruangan][$item->id_status_karyawan]=1; ?>
+                                <tr style='background: #eaeaea;'>
+                                    <td>--</td>
+                                    <td colspan="50" style='vertical-align: middle;'>{{ !empty($item->nm_status_karyawan) ? $item->nm_status_karyawan : '' }}</td>
+                                </tr>
+                            @endif
+                            <tr>
+                                <td style='vertical-align: middle;'>{{ $key+1 }}</td>
+                                <td style='vertical-align: middle;'>
+                                    <div>( {{ !empty($item->id_user) ? $item->id_user : '' }} )</div>
+                                    <div>{{ !empty($item->nm_karyawan) ? $item->nm_karyawan : '' }}</div>
+                                    @if(!empty($item->nm_shift))
+                                        <div style='border-top:1px solid'>{{ $item->nm_shift }}</div>
+                                    @endif
+                                </td>
+                                @foreach($list_tgl as $key_tgl => $item_tgl)
+
+                                    @php
+                                        $tgl_key = date('Y-m-d', strtotime($item_tgl));
+                                        $jadwal_tgl = $item->jadwal[$tgl_key] ?? null;
+                                        $cuti_tgl = $list_cuti[$item->id_karyawan][$tgl_key] ?? null;
+
+                                        $class_td = '';
+
+                                        if($jadwal_tgl){
+
+                                            if($cuti_tgl){
+                                                $class_td = 'hari_blue_sky';
+                                            }
+                                            else if($jadwal_tgl && isset($jadwal_tgl['nm_jenis_jadwal']) && $jadwal_tgl['nm_jenis_jadwal'] == 'OFF'){
+                                                $class_td = 'hari_red';
+                                            }
+                                        }
+
+                                    @endphp
+
+                                    <td class="{{ $class_td }} jadwal-cell" style="cursor:pointer;">
+
+
+                                        <div class="jadwal-display">
+                                            @if($cuti_tgl)
+                                                <div><b>CUTI</b></div>
+                                                <div>{{ $cuti_tgl }}</div>
+                                            @elseif($jadwal_tgl)
+                                                <div><b>{{ $jadwal_tgl['nm_jenis_jadwal'] }}</b></div>
+
+                                                @if($jadwal_tgl['jam_masuk'] != '00:00:00')
+                                                    <div>{{ $jadwal_tgl['jam_masuk'] }} - {{ $jadwal_tgl['jam_pulang'] }}</div>
+                                                @endif
+                                            @else
+                                                -
+                                            @endif
+                                        </div>
+
+
+
+
+
+                                    </td>
+
+                                        
+
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
+
+        @if(!empty($list_data))
+            <div class="d-flex justify-content-end">
+                {{ $list_data->withQueryString()->onEachSide(0)->links() }}
+            </div>
+        @endif
+    </div>
+</div>

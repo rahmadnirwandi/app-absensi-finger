@@ -1,0 +1,85 @@
+create table ref_user_info_tmp
+(
+    id_mesin_absensi int unsigned                not null,
+    id_user          int                         not null,
+    name             varchar(255) charset latin1 not null,
+    password         varchar(20) charset latin1  null,
+    `group`          int                         null,
+    privilege        int                         null,
+    card             varchar(20) charset latin1  null,
+    pin2             int                         null,
+    tz1              int                         null,
+    tz2              int                         null,
+    tz3              int                         null,
+    constraint uniq
+        unique (id_mesin_absensi, id_user, name, password, `group`, privilege, card, pin2, tz1, tz2, tz3)
+);
+
+create table ref_user_info_detail_tmp
+(
+    id_mesin_absensi int unsigned               not null,
+    id_user          int                        not null,
+    finger_id        smallint                   not null,
+    size             varchar(20) charset latin1 null,
+    valid            smallint                   not null,
+    finger           text charset latin1        not null,
+    constraint uniq
+        unique (id_mesin_absensi, id_user, finger_id),
+    constraint ruidt_fk
+        foreign key (id_mesin_absensi, id_user) references ref_user_info_tmp (id_mesin_absensi, id_user)
+            on update cascade on delete cascade
+);
+
+
+
+INSERT ignore into ref_user_info_tmp (
+id_mesin_absensi,
+id_user,
+name,
+password,
+`group`,
+privilege,
+card,
+pin2,
+tz1,
+tz2,
+tz3
+)
+
+select 
+5 id_mesin_absensi,
+id_user,
+name,
+password,
+`group`,
+privilege,
+card,
+pin2,
+tz1,
+tz2,
+tz3
+from sik_atam_absensi_umesin5_20230627.ref_user_info
+
+INSERT ignore into ref_user_info_detail_tmp (
+id_mesin_absensi,
+id_user,
+finger_id,
+size,
+valid,
+finger
+)
+select 
+5 id_mesin_absensi,
+id_user,
+finger_id,
+size,
+valid,
+finger
+from sik_atam_absensi_umesin5_20230627.ref_user_info_detail
+
+select count(*) from ref_user_info_tmp where id_mesin_absensi=5;
+select count(*) from sik_atam_absensi_umesin5_20230627.ref_user_info;
+
+select count(*) from ref_user_info_detail_tmp where id_mesin_absensi=5;
+select count(*) from sik_atam_absensi_umesin5_20230627.ref_user_info_detail;
+

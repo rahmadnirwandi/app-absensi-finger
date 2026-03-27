@@ -1,0 +1,58 @@
+alter TABLE ref_karyawan_tmp AUTO_INCREMENT = 1;
+-- 
+insert ignore into ref_karyawan_tmp(
+
+nm_karyawan,
+alamat,
+nip,
+id_jabatan,
+id_departemen,
+id_ruangan,
+id_user
+)
+
+select 
+Name,
+'' alamat,
+'' nip,
+0 id_jabatan,
+0 id_departemen,
+0 id_ruangan,
+Badgenumber
+from sik_atam_absensi_mdb.USERINFO
+;
+
+
+alter TABLE ref_karyawan AUTO_INCREMENT = 1;
+-- -- 
+insert ignore into ref_karyawan(
+id_karyawan,
+nm_karyawan,
+alamat,
+nip,
+id_jabatan,
+id_departemen,
+id_ruangan
+)
+
+select 
+id_karyawan,
+nm_karyawan,
+alamat,
+nip,
+id_jabatan,
+id_departemen,
+id_ruangan
+from ref_karyawan_tmp
+order by id_karyawan
+;
+
+
+alter TABLE ref_karyawan_user AUTO_INCREMENT = 1;
+-- 
+insert ignore into ref_karyawan_user(
+id_karyawan,
+id_user
+)
+
+select id_karyawan,id_user from ref_karyawan_tmp

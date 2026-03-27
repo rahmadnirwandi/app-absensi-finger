@@ -1,0 +1,26 @@
+
+
+select 
+id_karyawan,nm_karyawan,id_departemen,id_ruangan,id_status_karyawan
+from (
+select 
+tmp.id_user,
+rks.id_karyawan,
+trim(tmp.nm_karyawan) nm_karyawan,
+rsk.id_status_karyawan,
+rd.id_departemen,
+trim(bidang) departemen,
+lcase(replace(trim(bidang),' ','') ) departemen_uniq,
+rr.id_ruangan,
+rr.id_departemen ruanga_id_departemen,
+trim(ruang) ruangan,
+lcase(replace(trim(ruang),' ','') ) ruang_uniq
+from karyawan_tmp tmp 
+left join ref_status_karyawan rsk on lcase(replace(trim(rsk.nm_status_karyawan),' ','') ) = lcase(replace(trim(tmp.status),' ','') )
+left join ref_user_info rsi on rsi.id_user=CONVERT ( lcase(replace(trim(tmp.id_user),' ','') ), UNSIGNED INTEGER)
+left join ref_karyawan_user rks on rks.id_user = tmp.id_user
+left join ref_departemen rd on lcase(replace(trim(rd.nm_departemen),' ','') )=lcase(replace(trim(tmp.bidang),' ','') )
+left join ref_ruangan rr on lcase(replace(trim(rr.nm_ruangan),' ','') )=lcase(replace(trim(tmp.ruang),' ','') )
+)utama
+order by departemen_uniq,ruang_uniq
+

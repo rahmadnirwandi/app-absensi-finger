@@ -1,0 +1,47 @@
+
+-- set @id_mesin = 5;
+-- 
+-- select 
+-- 	@userid_mdb_list := group_concat(USERID)
+-- from(
+-- 	select 
+-- 		log.*,
+-- 		mesin.id_mesin_absensi,
+-- 		nm_mesin,
+-- 		lokasi_mesin 
+-- 	from (
+-- 		select 
+-- 			USERID,sn 
+-- 		from sik_atam_absensi_mdb.CHECKINOUT 
+-- 	)log
+-- 	left join ref_mesin_absensi mesin  on mesin.sn=log.sn
+-- 	where id_mesin_absensi=@id_mesin
+-- 	group by USERID
+-- )utama
+-- ;
+
+-- select * from (
+-- select 
+-- 	USERID,Badgenumber,Name,PASSWORD
+-- from sik_atam_absensi_mdb.userinfo
+-- where
+-- FIND_IN_SET(USERID, @userid_mdb_list)
+-- order by CONVERT ( REPLACE (Badgenumber, '-', '' ), UNSIGNED INTEGER )
+-- )utama 
+-- ;
+select * from (
+select 
+	USERID,
+	Badgenumber,
+	Name,
+	mverifypass as password,
+	1 as group_,
+	0 as privilege,
+	0 as card,
+	Badgenumber as pin2,
+	0 as tz1,
+	0 as tz3
+from sik_atam_absensi_mdb.userinfo
+order by CONVERT ( REPLACE (Badgenumber, '-', '' ), UNSIGNED INTEGER )
+)utama 
+;

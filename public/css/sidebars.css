@@ -1,0 +1,113 @@
+/* Styling untuk sidebar */
+.active {
+    border-radius: 0px !important;
+    background-color: #3b95ff;
+    color: #0D0D34 !important;
+}
+
+.fw-semibold {
+    font-weight: 600;
+}
+
+.fw-semibold {
+    font-weight: 600;
+}
+
+.lh-tight {
+    line-height: 1.25;
+}
+
+.minimize {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+}
+
+.icon-sidebar {
+    /* width: 34px; */
+    width: 21px;
+}
+
+
+/* Sidebar */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 15rem;
+    height: auto;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/* ------------------- */
+
+/* link Sidebar */
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+/* ------------------- */
+
+/* Link pada mouse-over */
+.sidebar a.menu:hover:not(.active) {
+    background-color: #3b95ff;
+    border-radius: 0px;
+    color: white;
+}
+
+/* ------------------- */
+
+.toggle-sidebar {
+    display: none;
+}
+
+.title-page {
+    font-size: 2rem;
+}
+
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        position: fixed;
+        height: 100vh;
+        left: -100%;
+        transition: 0.3s;
+        z-index: 10 !important;
+    }
+    
+    .sidebar-show {
+        position: fixed;
+        left: 0%;
+        transition: 0.3s;
+        z-index: 10 !important;
+    }
+    
+    .overlay-canva {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        background-color: #2125295e;
+        transition: opacity .15s linear;
+        z-index: 9 !important;
+    }
+
+    .toggle-sidebar {
+        display: block;
+    }
+
+    .title-page {
+        font-size: 18px;
+    }
+
+    .py-md-5 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    #minimize {
+        display: none;
+    }
+}

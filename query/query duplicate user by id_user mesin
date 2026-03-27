@@ -1,0 +1,239 @@
+select 
+*
+from 
+(
+select 
+utama.id_mesin_absensi as id_mesin_absensi_utama,
+utama.id_user as id_user_utama,
+utama.name as name_utama,
+
+a.id_mesin_absensi as id_mesin_absensi_a,
+a.id_user as id_user_a,
+a.name as name_a,
+b.id_mesin_absensi as id_mesin_absensi_b,
+b.id_user as id_user_b,
+b.name as name_b,
+c.id_mesin_absensi as id_mesin_absensi_c,
+c.id_user as id_user_c,
+c.name as name_c,
+d.id_mesin_absensi as id_mesin_absensi_d,
+d.id_user as id_user_d,
+d.name as name_d
+
+ from (
+select * from ref_user_info_tmp where id_mesin_absensi=1
+)utama
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=2
+)a on a.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=3
+)b on b.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=4
+)c on c.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=5
+)d on d.id_user=utama.id_user
+)utama 
+where id_user_a is not null or 
+id_user_b is not null or 
+id_user_c is not null or 
+id_user_d is not null
+;
+
+select 
+*
+from 
+(
+select 
+utama.id_mesin_absensi as id_mesin_absensi_utama,
+utama.id_user as id_user_utama,
+utama.name as name_utama,
+
+a.id_mesin_absensi as id_mesin_absensi_a,
+a.id_user as id_user_a,
+a.name as name_a,
+b.id_mesin_absensi as id_mesin_absensi_b,
+b.id_user as id_user_b,
+b.name as name_b,
+c.id_mesin_absensi as id_mesin_absensi_c,
+c.id_user as id_user_c,
+c.name as name_c,
+d.id_mesin_absensi as id_mesin_absensi_d,
+d.id_user as id_user_d,
+d.name as name_d
+
+ from (
+select * from ref_user_info_tmp where id_mesin_absensi=2
+)utama
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=3
+)a on a.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=4
+)b on b.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=5
+)c on c.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=1
+)d on d.id_user=utama.id_user
+)utama 
+where id_user_a is not null or 
+id_user_b is not null or 
+id_user_c is not null or 
+id_user_d is not null
+;
+
+select 
+*
+from 
+(
+select 
+utama.id_mesin_absensi as id_mesin_absensi_utama,
+utama.id_user as id_user_utama,
+utama.name as name_utama,
+
+a.id_mesin_absensi as id_mesin_absensi_a,
+a.id_user as id_user_a,
+a.name as name_a,
+b.id_mesin_absensi as id_mesin_absensi_b,
+b.id_user as id_user_b,
+b.name as name_b,
+c.id_mesin_absensi as id_mesin_absensi_c,
+c.id_user as id_user_c,
+c.name as name_c,
+d.id_mesin_absensi as id_mesin_absensi_d,
+d.id_user as id_user_d,
+d.name as name_d
+
+ from (
+select * from ref_user_info_tmp where id_mesin_absensi=3
+)utama
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=4
+)a on a.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=5
+)b on b.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=1
+)c on c.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=2
+)d on d.id_user=utama.id_user
+)utama 
+where id_user_a is not null or 
+id_user_b is not null or 
+id_user_c is not null or 
+id_user_d is not null
+;
+
+select 
+*
+from 
+(
+select 
+utama.id_mesin_absensi as id_mesin_absensi_utama,
+utama.id_user as id_user_utama,
+utama.name as name_utama,
+
+a.id_mesin_absensi as id_mesin_absensi_a,
+a.id_user as id_user_a,
+a.name as name_a,
+b.id_mesin_absensi as id_mesin_absensi_b,
+b.id_user as id_user_b,
+b.name as name_b,
+c.id_mesin_absensi as id_mesin_absensi_c,
+c.id_user as id_user_c,
+c.name as name_c,
+d.id_mesin_absensi as id_mesin_absensi_d,
+d.id_user as id_user_d,
+d.name as name_d
+
+ from (
+select * from ref_user_info_tmp where id_mesin_absensi=4
+)utama
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=5
+)a on a.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=1
+)b on b.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=2
+)c on c.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=3
+)d on d.id_user=utama.id_user
+)utama 
+where id_user_a is not null or 
+id_user_b is not null or 
+id_user_c is not null or 
+id_user_d is not null
+;
+
+select 
+*
+from 
+(
+select 
+utama.id_mesin_absensi as id_mesin_absensi_utama,
+utama.id_user as id_user_utama,
+utama.name as name_utama,
+
+a.id_mesin_absensi as id_mesin_absensi_a,
+a.id_user as id_user_a,
+a.name as name_a,
+b.id_mesin_absensi as id_mesin_absensi_b,
+b.id_user as id_user_b,
+b.name as name_b,
+c.id_mesin_absensi as id_mesin_absensi_c,
+c.id_user as id_user_c,
+c.name as name_c,
+d.id_mesin_absensi as id_mesin_absensi_d,
+d.id_user as id_user_d,
+d.name as name_d
+
+ from (
+select * from ref_user_info_tmp where id_mesin_absensi=5
+)utama
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=1
+)a on a.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=2
+)b on b.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=3
+)c on c.id_user=utama.id_user
+
+left join (
+select * from ref_user_info_tmp where id_mesin_absensi=4
+)d on d.id_user=utama.id_user
+)utama 
+where id_user_a is not null or 
+id_user_b is not null or 
+id_user_c is not null or 
+id_user_d is not null
+;

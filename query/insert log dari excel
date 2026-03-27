@@ -1,0 +1,63 @@
+create table ref_mesin_absensi
+(
+    id_mesin_absensi int unsigned auto_increment
+        primary key,
+    ip_address       varchar(255) not null,
+    comm_key         int          not null,
+    nm_mesin         varchar(255) not null,
+    lokasi_mesin     varchar(255) not null,
+    constraint ref_mesin_absensi_ip_address_unique
+        unique (ip_address)
+)
+    charset = latin1;
+
+create table ref_data_absensi
+(
+    id_mesin_absensi int unsigned not null,
+    id_user          int unsigned not null,
+    waktu            datetime     not null,
+    verified         varchar(20)  not null,
+    status           varchar(20)  not null
+)
+    charset = latin1;
+
+create table ref_data_absensi_tmp
+(
+    id_mesin_absensi varchar(255) not null,
+    id_user          varchar(255) not null,
+    nama             varchar(255) not null,
+    waktu            varchar(255) not null,
+    verified         varchar(255) not null,
+    status           varchar(255) not null,
+    constraint uniq
+        unique (id_mesin_absensi, id_user, waktu, verified, status, nama)
+)
+    charset = latin1;
+
+create table ref_data_absensi_tmp_tmp
+(
+    id_mesin_absensi varchar(255) not null,
+    id_user          varchar(255) not null,
+    nama             varchar(255) not null,
+    waktu            varchar(255) not null,
+    verified         varchar(255) not null,
+    status           varchar(255) not null
+)
+    charset = latin1;
+
+
+
+
+
+insert ignore into ref_data_absensi_tmp(
+id_mesin_absensi,id_user,nama,waktu,verified,status
+)
+SELECT
+	5 id_mesin_absensi,
+	CONVERT(trim( id_user ),UNSIGNED INTEGER ) id_user,
+	trim( nama ) nama,
+	STR_TO_DATE(REPLACE(trim( waktu ),'.000',''), '%Y-%m-%d %H:%i:%s') waktu,
+	CONVERT(trim( verified ),UNSIGNED INTEGER ) verified,
+	CONVERT(trim( status ),UNSIGNED INTEGER ) status
+FROM
+	ref_data_absensi_tmp_tmp;

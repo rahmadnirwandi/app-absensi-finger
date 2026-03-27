@@ -1,0 +1,85 @@
+select * from (
+select
+-- *,
+userid,
+trim(name) nama,
+lcase(replace(trim(name),' ','') ) name_uniq,
+gender
+from sik_atam_absensi_mdb.userinfo
+)utama
+left join (
+select
+id_user,
+trim(name) nama_t,
+lcase(replace(trim(name),' ','') ) name_uniq_t
+from ref_user_info
+)target on target.name_uniq_t=utama.name_uniq
+-- where
+-- target.id_user=utama.userid
+
+-- where
+-- target.name_uniq_t=utama.name_uniq
+-- and target.id_user=utama.userid
+
+where
+target.name_uniq_t=utama.name_uniq
+and target.id_user!=utama.userid
+
+-- where
+-- target.name_uniq_t!=utama.name_uniq
+-- and target.id_user=utama.userid
+
+-- where
+-- target.id_user=utama.userid
+-- and target.name_uniq_t!=utama.name_uniq
+
+
+
+
+
+
+select id_mesin_absensi,userid,checktime,verifycode,checktype,sn from (
+select
+*,
+CASE
+    WHEN lcase(sn) = lcase('BJ36221760101') THEN 1
+    WHEN lcase(sn) = lcase('BJ36221760190') THEN 2
+    WHEN lcase(sn) = lcase('BJ36221760167') THEN 3
+    WHEN lcase(sn) = lcase('BJ36221760096') THEN 4
+    WHEN lcase(sn) = lcase('BJ36193960290') THEN 5
+
+    WHEN lcase(sn) = lcase('BJ36221760187') THEN 6
+    WHEN lcase(sn) = lcase('BJ36193960334') THEN 7
+    WHEN lcase(sn) = lcase('0331143301256') THEN 8
+    WHEN lcase(sn) = lcase('0331143301339') THEN 9
+    ELSE 0
+END AS id_mesin_absensi
+from sik_atam_absensi_mdb.checkinout
+)utama
+order by date(CHECKTIME) asc
+
+
+
+ALTER TABLE ref_data_absensi_tmp_2 AUTO_INCREMENT = 1;
+insert ignore into ref_data_absensi_tmp_2(
+    id_mesin_absensi,id_user,waktu,verified,status
+)
+select id_mesin_absensi,userid,checktime,verifycode,checktype,sn from (
+select
+*,
+CASE
+    WHEN lcase(sn) = lcase('BJ36221760101') THEN 1
+    WHEN lcase(sn) = lcase('BJ36221760190') THEN 2
+    WHEN lcase(sn) = lcase('BJ36221760167') THEN 3
+    WHEN lcase(sn) = lcase('BJ36221760096') THEN 4
+    WHEN lcase(sn) = lcase('BJ36193960290') THEN 5
+
+    WHEN lcase(sn) = lcase('BJ36221760187') THEN 6
+    WHEN lcase(sn) = lcase('BJ36193960334') THEN 7
+    WHEN lcase(sn) = lcase('0331143301256') THEN 8
+    WHEN lcase(sn) = lcase('0331143301339') THEN 9
+    ELSE 0
+END AS id_mesin_absensi
+from sik_atam_absensi_mdb.checkinout
+)utama
+order by date(CHECKTIME) asc
