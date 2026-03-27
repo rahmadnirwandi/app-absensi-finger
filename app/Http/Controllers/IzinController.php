@@ -16,6 +16,7 @@ class IzinController extends Controller
     public function __construct()
     {
         $router_name = (new \App\Http\Traits\GlobalFunction)->getRouterIndex();
+        
         $this->part_view = $router_name->path_base;
         $this->url_index = $router_name->uri;
         $this->url_name = $router_name->router_name;
